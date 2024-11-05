@@ -62,50 +62,52 @@ const ClubCard = ({ club }) => {
     return (
         <div style={{
             padding: '20px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+            borderRadius: '12px',
+            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
             margin: '20px',
             textAlign: 'center',
-            maxWidth: '300px',
-            backgroundColor: '#ffffff',
-            transition: 'box-shadow 0.3s, transform 0.3s',
+            maxWidth: '350px',
+            background: 'linear-gradient(145deg, #f7f7f7, #e8e8e8)',
+            transition: 'transform 0.3s, box-shadow 0.3s',
             cursor: 'pointer',
+            overflow: 'hidden',
         }}
             onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                e.currentTarget.style.transform = 'scale(1.03)';
             }}
             onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
                 e.currentTarget.style.transform = 'scale(1)';
             }}>
-            <img src={club.image} alt={`${club.name}`} style={{ width: '100%', borderRadius: '8px', height: '180px', objectFit: 'cover' }} />
-            <h3 style={{ color: '#333', marginBottom: '10px' }}>{club.name}</h3>
-            <p style={{ color: '#666', marginBottom: '15px' }}>{club.description}</p>
-            <p style={{ fontWeight: 'bold', color: '#007bff' }}>{countdown}</p>
+            <img src={club.image} alt={`${club.name}`} style={{ width: '100%', borderRadius: '8px', height: '200px', objectFit: 'cover', transition: 'transform 0.3s' }} />
+            <h3 style={{ color: '#333', marginBottom: '10px', fontSize: '1.5rem', fontWeight: 'bold' }}>{club.name}</h3>
+            <p style={{ color: '#666', marginBottom: '15px', fontSize: '1rem' }}>{club.description}</p>
+            <p style={{ fontWeight: 'bold', color: '#e63946', animation: 'fade-in 2s infinite alternate' }}>{countdown}</p>
             <button
                 style={{
-                    backgroundColor: '#007bff',
+                    backgroundColor: '#457b9d',
                     color: '#fff',
                     padding: '10px 20px',
                     border: 'none',
-                    borderRadius: '5px',
+                    borderRadius: '8px',
                     cursor: 'pointer',
                     fontSize: '16px',
-                    transition: 'background-color 0.3s'
+                    transition: 'background-color 0.3s',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
                 }}
                 onClick={() => setShowDetails(!showDetails)}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056b3'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1d3557'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#457b9d'}
             >
                 {showDetails ? "Hide Details" : "Show Details"}
             </button>
 
             {showDetails && (
-                <div style={{ marginTop: '20px', textAlign: 'left' }}>
+                <div style={{ marginTop: '20px', textAlign: 'left', color: '#1d3557', animation: 'fade-in 0.5s ease-in' }}>
                     <h4>Testimonials</h4>
                     {club.testimonials.map((test, index) => (
-                        <p key={index} style={{ fontStyle: 'italic' }}>{test}</p>
+                        <p key={index} style={{ fontStyle: 'italic', color: '#333' }}>{test}</p>
                     ))}
 
                     <h4>Upcoming Events</h4>
@@ -134,9 +136,9 @@ const ClubCard = ({ club }) => {
                     )}
 
                     <h4>Follow Us</h4>
-                    <a href={`https://www.instagram.com/${club.name}`} target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href={`https://www.instagram.com/${club.name}`} target="_blank" rel="noopener noreferrer" style={{ color: '#e63946' }}>Instagram</a>
                     <br />
-                    <a href={`https://www.facebook.com/${club.name}`} target="_blank" rel="noopener noreferrer">Facebook</a>
+                    <a href={`https://www.facebook.com/${club.name}`} target="_blank" rel="noopener noreferrer" style={{ color: '#e63946' }}>Facebook</a>
                 </div>
             )}
         </div>
@@ -145,8 +147,8 @@ const ClubCard = ({ club }) => {
 
 const ClubActivity = () => {
     return (
-        <div style={{ padding: '40px', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
-            <h1 style={{ textAlign: 'center', color: '#333' }}>Club Activities</h1>
+        <div style={{ padding: '40px', backgroundColor: '#f1faee', minHeight: '100vh' }}>
+            <h1 style={{ textAlign: 'center', color: '#1d3557', fontSize: '2.5rem' }}>Club Activities</h1>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                 {Object.keys(clubsData).map((clubKey) => (
                     <ClubCard key={clubKey} club={clubsData[clubKey]} />
